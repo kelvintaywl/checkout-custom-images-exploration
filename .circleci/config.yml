@@ -17,11 +17,12 @@ jobs:
             docker --version
             docker volume ls
       - run:
-          name: 'Run the legacy Collection Partner Docker container'
+          name: 'Inspect the legacy Collection Partner Docker image'
           command: |
             # docker run --name legacy-build -v C:\Users\circleci\project:C:\Source collectionpartnersolutions/legacy dir
             # No volume mounting
-            docker run --name legacy-build collectionpartnersolutions/legacy dir
+            docker pull collectionpartnersolutions/legacy
+            docker image inspect collectionpartnersolutions/legacy | jq ".[0].Config" 
             
 
 
