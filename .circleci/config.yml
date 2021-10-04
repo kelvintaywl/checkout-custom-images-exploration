@@ -3,13 +3,16 @@ version: 2.1
 jobs:
   echo:
     docker:
-      - image: cimg/base:stable
+      - image: circleci/cci-demo-docker-primary:0.0.1
+        auth:
+          username: $DOCKER_LOGIN
+          password: $DOCKER_PASSWORD
     steps:
+      - checkout:
+          path: C:\source
       - run:
-          name: Greet
-          command: echo "I love ${COLOR} builds."
-          environment:
-            COLOR: "green"
+          command: |
+              tree C:\source
 
 workflows:
   main:
