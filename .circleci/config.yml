@@ -19,7 +19,9 @@ jobs:
       - run:
           name: 'Run the legacy Collection Partner Docker container'
           command: |
-            docker run --name legacy-build -v C:\Users\circleci\project:C:\Source collectionpartnersolutions/legacy dir
+            # docker run --name legacy-build -v C:\Users\circleci\project:C:\Source collectionpartnersolutions/legacy dir
+            # No volume mounting
+            docker run --name legacy-build collectionpartnersolutions/legacy dir
             
 
 
