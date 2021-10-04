@@ -1,18 +1,23 @@
 version: 2.1
 
+orbs:
+  win: circleci/windows@2.4.0
+
 jobs:
   echo:
-    docker:
-      - image: cloudfoundry/windows2016fs:2019
-        auth:
-          username: $DOCKER_LOGIN
-          password: $DOCKER_PASSWORD
+    executor: win/default
     steps:
-      - checkout:
-          path: C:\source
+      - checkout
       - run:
-          command: |
-              tree C:\source
+          name: Checkout source code
+          command: dir
+#       - run:
+#           name: 'Run the legacy Collection Partner Docker container'
+#           command: |
+#             Start-Process powershell -Verb runAs
+#             docker run --name legacy-build -v C:\Users\circleci\project\levolu:C:\levolu collectionpartnersolutions/legacy dir
+            
+
 
 workflows:
   main:
