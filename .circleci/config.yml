@@ -11,11 +11,15 @@ jobs:
       - run:
           name: Checkout source code
           command: dir
-#       - run:
-#           name: 'Run the legacy Collection Partner Docker container'
-#           command: |
-#             Start-Process powershell -Verb runAs
-#             docker run --name legacy-build -v C:\Users\circleci\project\levolu:C:\levolu collectionpartnersolutions/legacy dir
+      - run:
+          name: Check Docker details
+          command: |
+            docker --version
+            docker volume ls
+      - run:
+          name: 'Run the legacy Collection Partner Docker container'
+          command: |
+            docker run --name legacy-build -v C:\Users\circleci\project:C:\Source collectionpartnersolutions/legacy dir
             
 
 
